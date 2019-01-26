@@ -59,15 +59,17 @@ public class Agent : MonoBehaviour
         alignment *= avg * (flockingManager.alignment);
         cohesion *= avg;
         cohesion = cohesion * flockingManager.cohesion;
+        if (cohesion != Vector3.zero)
+            cohesion -= transform.position;
         moveDir = cohesion + alignment + separation + GetTargetDirection() + AvoidPredator();
-
+            
         // Used if not giving a bias for agents to return to the origin
         //if (moveDir == transform.forward)
         //    moveDir = transform.forward + transform.position;
 
         // Face target movement direction
         Quaternion targetRotation = transform.rotation;
-        targetRotation = Quaternion.LookRotation(moveDir - transform.position, transform.up);
+        targetRotation = Quaternion.LookRotation(moveDir, transform.up);
         if (transform.rotation != targetRotation)
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, flockingManager.rotationSpeed);
 
@@ -89,8 +91,10 @@ public class Agent : MonoBehaviour
 
     Vector3 GetTargetDirection()
     {
-        if (flockingManager.enableRandomTarget)
-            return flockingManager.target.transform.position - transform.position;
+        if (flockingManager.enableChaseTarget)
+        {
+            return flockingManager.target.position - transform.position;
+        }
         else
             return Vector3.zero;
     }
