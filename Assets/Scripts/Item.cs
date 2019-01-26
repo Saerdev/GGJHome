@@ -12,6 +12,7 @@ public class Item : MonoBehaviour, IInteractable
     public string Name;
     public ItemType itemType;
     public Sprite sprite;
+    public AudioClip audioClip;
 
     public Item(string name, ItemType type)
     {
@@ -30,6 +31,7 @@ public class Item : MonoBehaviour, IInteractable
         else
         {
             //do the other thing
+            
         }
     }
 
