@@ -10,7 +10,7 @@ public class FlockingManager : MonoBehaviour
     public Transform target;
 
     [Space(10)]
-    public bool enableRandomTarget;
+    public bool enableChaseTarget;
     public float targetChangeFrequency = .05f;
     public float worldSize = 70f;
 
@@ -83,7 +83,7 @@ public class FlockingManager : MonoBehaviour
 
     private void CreateAgent()
     {
-        Vector3 position = transform.position + Random.insideUnitSphere * spawnRadius;
+        Vector3 position = target.position + Random.onUnitSphere * spawnRadius;
         CreateAgent(position, Color.white);
     }
 

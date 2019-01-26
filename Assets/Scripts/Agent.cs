@@ -89,8 +89,10 @@ public class Agent : MonoBehaviour
 
     Vector3 GetTargetDirection()
     {
-        if (flockingManager.enableRandomTarget)
-            return flockingManager.target.transform.position - transform.position;
+        if (flockingManager.enableChaseTarget)
+        {
+            return flockingManager.target.position - transform.position;
+        }
         else
             return Vector3.zero;
     }
