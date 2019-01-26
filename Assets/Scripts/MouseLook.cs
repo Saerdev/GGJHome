@@ -5,10 +5,10 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     public Transform target;
-    public float xSens, ySens, verticalLookMin = 10, verticalLookMax;
+    public float xSens, ySens, verticalLookMin = -80, verticalLookMax = 80;
 
     Vector3 moveDir;
-    Vector2 newCamRot, oldCamRot;
+    public Vector2 newCamRot, oldCamRot;
 
     Vector3 curVelPos = Vector3.zero;
     Vector2 curVelRot = Vector2.zero;
@@ -25,7 +25,7 @@ public class MouseLook : MonoBehaviour
         oldCamRot = newCamRot;
         newCamRot.y += Input.GetAxis("Mouse X") * xSens;
         newCamRot.x -= Input.GetAxis("Mouse Y") * ySens;
-        //newCamRot.x = Mathf.Clamp(newCamRot.x, Mathf.Rad2Deg * verticalLookMin, Mathf.Rad2Deg * verticalLookMax);
+        newCamRot.x = Mathf.Clamp(newCamRot.x,  verticalLookMin, verticalLookMax);
         newCamRot = Vector2.SmoothDamp(oldCamRot, newCamRot, ref curVelRot, 0.7f * Time.deltaTime);
         transform.eulerAngles = newCamRot;
     }
