@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-    IIinteractiable item;
+    IInteractable item;
     // Update is called once per frame
     void Update()
     {
@@ -21,7 +21,7 @@ public class Interactor : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            item = other.GetComponent<IIinteractiable>();
+            item = other.GetComponent<IInteractable>();
         }
     }
 
