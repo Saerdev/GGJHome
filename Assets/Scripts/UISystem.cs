@@ -6,11 +6,11 @@ using TMPro;
 
 public class UISystem : MonoBehaviour
 {
-    //15 Days
+    //6 Days
     //Increment Day
     //Switch to next level
     //Display current day
-    //Spawn Darkness after set time e.g. 30 sec
+    //Darkness is triggered at stroy important moments
 
     // Start is called before the first frame update
 
@@ -19,7 +19,7 @@ public class UISystem : MonoBehaviour
     public TextMeshProUGUI dayText;
     void Start()
     {
-        timer = 120;
+        timer = 5;
         day = 1;
         dayText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }

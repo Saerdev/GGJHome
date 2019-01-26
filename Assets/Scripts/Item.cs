@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Item : MonoBehaviour, IInteractable
 {
     public enum ItemType
     {
-        Pickup,
-        NonPickup
+        Permanent,
+        NonPermanent
     }
     public string Name;
     public ItemType itemType;
     public Sprite sprite;
+    public AudioClip audioClip;
 
     public Item(string name, ItemType type)
     {
@@ -22,14 +22,21 @@ public class Item : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (itemType== ItemType.Pickup)
+        if (itemType == ItemType.Permanent)
         {
-            InventoryUI.Instance.AddItem(this);
+            InventoryUI.Instance.AddNumberItem(this);
             Destroy(gameObject);
         }
+
         else
         {
-            //play audio or whatever 
+            //do the other thing
+            
         }
+    }
+
+    public void ItemUsed()
+    {
+
     }
 }
