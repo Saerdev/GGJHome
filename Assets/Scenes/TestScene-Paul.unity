@@ -675,5 +675,25 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1087204214}
+    - target: {fileID: 6098893231682801688, guid: ab865928826bb3549a01a58c97dcfc8e,
+        type: 3}
+      propertyPath: separation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098893231682801688, guid: ab865928826bb3549a01a58c97dcfc8e,
+        type: 3}
+      propertyPath: alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098893231682801688, guid: ab865928826bb3549a01a58c97dcfc8e,
+        type: 3}
+      propertyPath: cohesion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098893231682801688, guid: ab865928826bb3549a01a58c97dcfc8e,
+        type: 3}
+      propertyPath: neighborRadius
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab865928826bb3549a01a58c97dcfc8e, type: 3}
