@@ -22,13 +22,14 @@ public class UISystem : MonoBehaviour
         timer = 5;
         day = 1;
         dayText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //timer -= Time.deltaTime;
-        //dayText.text = "Day: " + day;
+        dayText.text = "Day: " + day;
 
         if (timer < 0)
         {

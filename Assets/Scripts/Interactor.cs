@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactor : MonoBehaviour
 {
     IInteractable item;
+    public GameObject pressE;
     // Update is called once per frame
     void Update()
     {
@@ -12,7 +13,7 @@ public class Interactor : MonoBehaviour
         {
             item.Interact();
 
-
+            
 
         }
         
@@ -22,6 +23,7 @@ public class Interactor : MonoBehaviour
         if (other.CompareTag("Interactable"))
         {
             item = other.GetComponent<IInteractable>();
+            pressE.SetActive(true);
         }
     }
 
@@ -30,6 +32,7 @@ public class Interactor : MonoBehaviour
         if (other.CompareTag("Interactable"))
         {
             item = null;
+            pressE.SetActive(false);
         }
     }
 
