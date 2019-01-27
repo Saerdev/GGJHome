@@ -43,6 +43,16 @@ public class FlockingManager : MonoBehaviour
 
     private void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
+        for (int i = 0; i < agents.Count; i++)
+        {
+            Destroy(agents[i].gameObject);
+        }
+
         for (int i = 0; i < flockSize; i++)
         {
             CreateAgent();
@@ -78,7 +88,6 @@ public class FlockingManager : MonoBehaviour
         }
 
         flockCenter /= agents.Count;
-
     }
 
     private void CreateAgent()
@@ -91,7 +100,7 @@ public class FlockingManager : MonoBehaviour
     {
         GameObject agent = Instantiate(agentPrefab, position, Random.rotation);
         agent.transform.SetParent(transform);
-        agent.GetComponent<Renderer>().material.color = color;
+        //agent.GetComponent<Renderer>().material.color = color;
         Agent newAgent = agent.GetComponent<Agent>();
         newAgent.flockingManager = this;
         agents.Add(newAgent);
@@ -100,7 +109,7 @@ public class FlockingManager : MonoBehaviour
     private void CreatePredator(Vector3 position)
     {
         GameObject predator = Instantiate(predatorPrefab, position, Random.rotation);
-        predator.GetComponent<Renderer>().material.color = Color.red;
+        //predator.GetComponent<Renderer>().material.color = Color.red;
         Predator newPredator = predator.GetComponent<Predator>();
         newPredator.flockingManager = this;
         predators.Add(newPredator);

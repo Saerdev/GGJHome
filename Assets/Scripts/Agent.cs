@@ -14,7 +14,7 @@ public class Agent : MonoBehaviour
 
     public Vector3 separation, alignment, cohesion;
 
-    private Collider[] neighbors, predators;
+    private Collider[] neighbors = new Collider[100], predators = new Collider[100];
     private Vector3 moveDir;
 
     float noiseOffset, velocity;
@@ -26,7 +26,7 @@ public class Agent : MonoBehaviour
         noiseOffset = Random.value * 10.0f; 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         neighbors = Physics.OverlapSphere(transform.position, flockingManager.neighborRadius, flockingManager.agentMask);
         Vector3 avgNeighborPos = Vector3.zero;
@@ -36,6 +36,9 @@ public class Agent : MonoBehaviour
 
         for (int i = 0; i < neighbors.Length; i++)
         {
+            if (neighbors[i] == null)
+                break;
+
             if (neighbors[i].gameObject == gameObject)
                 continue;
             
@@ -77,13 +80,14 @@ public class Agent : MonoBehaviour
         float noise = Mathf.PerlinNoise(Time.time, noiseOffset) * 2.0f - 1.0f;
         velocity = flockingManager.agentSpeed * (1.0f + noise * flockingManager.speedVariation);
         transform.position += transform.forward * velocity * PredatorProximity() * Time.deltaTime;
+        //transform.Translate(transform.forward * velocity * PredatorProximity() * Time.deltaTime);
     }
 
     Vector3 GetSeparationVector(Vector3 neighborPos)
     {
         Vector3 diff = transform.position - neighborPos;
-        float diffMag = diff.magnitude;
-        if (diffMag < flockingManager.separation)
+        float diffMag = diff.sqrMagnitude;
+        if (diffMag < flockingManager.separation * flockingManager.separation)
             return diff;
         else
             return Vector3.zero;
@@ -98,7 +102,7 @@ public class Agent : MonoBehaviour
         else
             return Vector3.zero;
     }
-
+     
     Vector3 AvoidPredator()
     {
         if (flockingManager.avoidPredators)

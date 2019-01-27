@@ -10,7 +10,13 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Darkness"))
         {
             GameManager.Instance.day++;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.Instance.eOnDayChange(true);
+        }
+
+        if (other.CompareTag("FrontDoor"))
+        {
+            GameManager.Instance.day++;
+            GameManager.Instance.eOnDayChange(false);
         }
     }
 }

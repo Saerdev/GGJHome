@@ -19,14 +19,14 @@ public class InventoryUI : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
-
+    
     public void AddNumberItem(Item item)
     {
         if (PlayerInventory.numberInventory.Count < 3)
         {
             PlayerInventory.numberInventory.Add(item);
-            numberImage[PlayerInventory.numberInventory.Count - 1].sprite = item.sprite;
-            numberImage[PlayerInventory.numberInventory.Count - 1].enabled = true;
+            //numberImage[PlayerInventory.numberInventory.Count - 1].sprite = item.sprite;
+            //numberImage[PlayerInventory.numberInventory.Count - 1].enabled = true;
         }
     }
 
