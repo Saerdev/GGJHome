@@ -107,5 +107,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Paper
   itemType: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 2c266d460f31e824da94d800f7e9b9d5, type: 3}
   audioClip: {fileID: 0}

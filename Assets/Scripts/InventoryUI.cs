@@ -25,8 +25,8 @@ public class InventoryUI : MonoBehaviour
         if (PlayerInventory.numberInventory.Count < 3)
         {
             PlayerInventory.numberInventory.Add(item);
-            //numberImage[PlayerInventory.numberInventory.Count - 1].sprite = item.sprite;
-            //numberImage[PlayerInventory.numberInventory.Count - 1].enabled = true;
+            numberImage[PlayerInventory.numberInventory.Count - 1].sprite = item.sprite;
+            numberImage[PlayerInventory.numberInventory.Count - 1].enabled = true;
         }
     }
 
