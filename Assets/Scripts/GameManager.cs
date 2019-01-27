@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance = null;
 
     public GameObject darkness;
+    public Transform playerSpawnPos;
+    private GameObject player;
 
     [System.Serializable]
     public struct DayItemMap
@@ -44,9 +46,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<Player>().gameObject;
+
         eOnDayChange = null;
         eOnDayChange += SceneItemManagement;
         eOnDayChange += DeactivateDarkness;
+        eOnDayChange += RepositionPlayer;
+
+        SceneItemManagement(true);
     }
 
     void SceneItemManagement(bool didCompleteTasks)
@@ -64,11 +71,18 @@ public class GameManager : MonoBehaviour
     public void ActivateDarkness()
     {
         darkness.gameObject.SetActive(true);
+        darkness.GetComponent<FlockingManager>().Init();
     }
 
     public void DeactivateDarkness(bool didCompleteTasks)
     {
-        darkness.GetComponent<FlockingManager>().Init();
+        darkness.SetActive(false);
+    }
+
+    void RepositionPlayer(bool didCompleteTasks)
+    {
+        day++;
+        player.transform.position = playerSpawnPos.position;
     }
 
     public void LeaveHouse()
@@ -82,5 +96,7 @@ public class GameManager : MonoBehaviour
     {
         eOnDayChange -= SceneItemManagement;
         eOnDayChange -= DeactivateDarkness;
+        eOnDayChange -= RepositionPlayer;
+
     }
 }

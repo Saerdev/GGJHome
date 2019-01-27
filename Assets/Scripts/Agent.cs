@@ -14,7 +14,7 @@ public class Agent : MonoBehaviour
 
     public Vector3 separation, alignment, cohesion;
 
-    private Collider[] neighbors = new Collider[100], predators = new Collider[100];
+    private Collider[] neighbors, predators;
     private Vector3 moveDir;
 
     float noiseOffset, velocity;

@@ -84,7 +84,8 @@ public class FlockingManager : MonoBehaviour
         flockCenter = Vector3.zero;
         for (int i = 0; i < agents.Count; i++)
         {
-            flockCenter += agents[i].transform.position;
+            if (agents[i] != null)
+                flockCenter += agents[i].transform.position;
         }
 
         flockCenter /= agents.Count;

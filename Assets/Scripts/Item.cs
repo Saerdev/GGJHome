@@ -6,8 +6,8 @@ public class Item : MonoBehaviour, IInteractable
 {
     public enum ItemType
     {
-        Permanent,
-        NonPermanent
+        InventoryItem,
+        WorldItem
     }
     public string Name;
     public ItemType itemType;
@@ -28,7 +28,7 @@ public class Item : MonoBehaviour, IInteractable
     {
         if (isInteracting)
         {
-            transform.position = Vector3.Lerp(transform.position, mouseLook.transform.position + mouseLook.transform.forward * 2, 20 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, mouseLook.transform.position + mouseLook.transform.forward * 1, 20 * Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, mouseLook.transform.rotation, 20 * Time.deltaTime);
         }
     }
@@ -39,23 +39,28 @@ public class Item : MonoBehaviour, IInteractable
         itemType = type;
     }
 
-    public void Interact()
+    public virtual void Interact()
     {
-        if (itemType == ItemType.Permanent)
+        if (itemType == ItemType.InventoryItem)
         {
             if (!isInteracting)
             {
+                playerMovement.enabled = false;
                 InventoryUI.Instance.AddNumberItem(this);
                 Cursor.lockState = CursorLockMode.None;
                 isInteracting = true;
+
+                if (audioClip != null)
+                    AudioManager.Instance.Play(audioClip);
             }
             else
             {
                 playerMovement.enabled = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 isInteracting = false;
+                playerMovement.enabled = true;
 
-                if (name == "Paper")
+                if (Name == "Paper")
                 {
                     GameManager.Instance.ActivateDarkness();
                 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - Darkness
+  - FrontDoor
   layers:
   - Default
   - TransparentFX
