@@ -27,8 +27,8 @@ public class UISystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
-        dayText.text = "Day: " + day;
+        //timer -= Time.deltaTime;
+        //dayText.text = "Day: " + day;
 
         if (timer < 0)
         {
